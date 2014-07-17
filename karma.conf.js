@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 // Karma configuration
 module.exports = function(config) {
-  var _ = require('lodash'),
-    basePath = '.',
-    assets = require(basePath + '/config/assets.json');
+  var _ = require("lodash"),
+    basePath = ".",
+    assets = require(basePath + "/config/assets.json");
 
   config.set({
 
@@ -12,33 +12,33 @@ module.exports = function(config) {
     basePath: basePath,
 
     // frameworks to use
-    frameworks: ['jasmine'],
+    frameworks: ["jasmine"],
 
     // list of files / patterns to load in the browser
     files: _.flatten(_.values(assets.core.js)).concat([
-      'packages/*/public/*.js',
-      'packages/*/public/*/*.js'
+      "packages/*/public/*.js",
+      "packages/*/public/*/*.js"
     ]),
 
     // list of files to exclude
     exclude: [],
 
     // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'coverage'],
+    // possible values: "dots", "progress", "junit", "growl", "coverage"
+    reporters: ["progress", "coverage"],
 
     // coverage
     preprocessors: {
       // source files that you want to generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'packages/*/public/controllers/*.js': ['coverage'],
-      'packages/*/public/services/*.js': ['coverage']
+      "packages/*/public/controllers/*.js": ["coverage"],
+      "packages/*/public/services/*.js": ["coverage"]
     },
 
     coverageReporter: {
-      type: 'html',
-      dir: 'test/coverage/'
+      type: "html",
+      dir: "test/coverage/"
     },
 
     // web server port
@@ -62,7 +62,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS'],
+    browsers: ["PhantomJS"],
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,

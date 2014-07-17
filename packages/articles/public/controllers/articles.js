@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles',
+angular.module("mean.articles").controller("ArticlesController", ["$scope", "$stateParams", "$location", "Global", "Articles",
   function($scope, $stateParams, $location, Global, Articles) {
     $scope.global = Global;
 
@@ -16,11 +16,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
           content: this.content
         });
         article.$save(function(response) {
-          $location.path('articles/' + response._id);
+          $location.path("articles/" + response._id);
         });
 
-        this.title = '';
-        this.content = '';
+        this.title = "";
+        this.content = "";
       } else {
         $scope.submitted = true;
       }
@@ -37,7 +37,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
         }
       } else {
         $scope.article.$remove(function(response) {
-          $location.path('articles');
+          $location.path("articles");
         });
       }
     };
@@ -51,7 +51,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
         article.updated.push(new Date().getTime());
 
         article.$update(function() {
-          $location.path('articles/' + article._id);
+          $location.path("articles/" + article._id);
         });
       } else {
         $scope.submitted = true;

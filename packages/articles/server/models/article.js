@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 
@@ -27,20 +27,20 @@ var ArticleSchema = new Schema({
   },
   user: {
     type: Schema.ObjectId,
-    ref: 'User'
+    ref: "User"
   }
 });
 
 /**
  * Validations
  */
-ArticleSchema.path('title').validate(function(title) {
+ArticleSchema.path("title").validate(function(title) {
   return !!title;
-}, 'Title cannot be blank');
+}, "Title cannot be blank");
 
-ArticleSchema.path('content').validate(function(content) {
+ArticleSchema.path("content").validate(function(content) {
   return !!content;
-}, 'Content cannot be blank');
+}, "Content cannot be blank");
 
 /**
  * Statics
@@ -48,7 +48,7 @@ ArticleSchema.path('content').validate(function(content) {
 ArticleSchema.statics.load = function(id, cb) {
   this.findOne({
     _id: id
-  }).populate('user', 'name username').exec(cb);
+  }).populate("user", "name username").exec(cb);
 };
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model("Article", ArticleSchema);

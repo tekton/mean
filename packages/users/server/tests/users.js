@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-var crypto = require('crypto');
+var crypto = require("crypto");
 
 /**
  * Create a random hex string of specific length and
@@ -11,15 +11,15 @@ function getRandomString(len) {
   if (!len)
     len = 16;
 
-  return crypto.randomBytes(Math.ceil(len / 2)).toString('hex');
+  return crypto.randomBytes(Math.ceil(len / 2)).toString("hex");
 }
 
 /**
  * Module dependencies.
  */
-var should = require('should'),
-  mongoose = require('mongoose'),
-  User = mongoose.model('User');
+var should = require("should"),
+  mongoose = require("mongoose"),
+  User = mongoose.model("User");
 
 /**
  * Globals
@@ -29,31 +29,31 @@ var user1, user2;
 /**
  * Test Suites
  */
-describe('<Unit Test>', function() {
-  describe('Model User:', function() {
+describe("<Unit Test>", function() {
+  describe("Model User:", function() {
 
     before(function(done) {
       user1 = {
-        name: 'Full name',
-        email: 'test' + getRandomString() + '@test.com',
+        name: "Full name",
+        email: "test" + getRandomString() + "@test.com",
         username: getRandomString(),
-        password: 'password',
-        provider: 'local'
+        password: "password",
+        provider: "local"
       };
 
       user2 = {
-        name: 'Full name',
-        email: 'test' + getRandomString() + '@test.com',
+        name: "Full name",
+        email: "test" + getRandomString() + "@test.com",
         username: getRandomString(),
-        password: 'password',
-        provider: 'local'
+        password: "password",
+        provider: "local"
       };
 
       done();
     });
 
-    describe('Method Save', function() {
-      it('should begin without the test user', function(done) {
+    describe("Method Save", function() {
+      it("should begin without the test user", function(done) {
         User.find({
           email: user1.email
         }, function(err, users) {
@@ -69,7 +69,7 @@ describe('<Unit Test>', function() {
         });
       });
 
-      it('should be able to save without problems', function(done) {
+      it("should be able to save without problems", function(done) {
 
         var _user = new User(user1);
         _user.save(function(err) {
@@ -80,15 +80,15 @@ describe('<Unit Test>', function() {
 
       });
 
-      it('should check that roles are assigned and created properly', function(done) {
+      it("should check that roles are assigned and created properly", function(done) {
 
         var _user = new User(user1);
         _user.save(function(err) {
           should.not.exist(err);
 
-          // the user1 object and users in general are created with only the 'authenticated' role
-          _user.hasRole('authenticated').should.equal(true);
-          _user.hasRole('admin').should.equal(false);
+          // the user1 object and users in general are created with only the "authenticated" role
+          _user.hasRole("authenticated").should.equal(true);
+          _user.hasRole("admin").should.equal(false);
           _user.isAdmin().should.equal(false);
           _user.roles.should.have.length(1);
           _user.remove(function(err) {
@@ -98,7 +98,7 @@ describe('<Unit Test>', function() {
 
       });
 
-      it('should confirm that password is hashed correctly', function(done) {
+      it("should confirm that password is hashed correctly", function(done) {
 
         var _user = new User(user1);
 
@@ -114,16 +114,16 @@ describe('<Unit Test>', function() {
         });
       });
 
-      it('should be able to create user and save user for updates without problems', function(done) {
+      it("should be able to create user and save user for updates without problems", function(done) {
 
         var _user = new User(user1);
         _user.save(function(err) {
           should.not.exist(err);
 
-          _user.name = 'Full name2';
+          _user.name = "Full name2";
           _user.save(function(err) {
             should.not.exist(err);
-            _user.name.should.equal('Full name2');
+            _user.name.should.equal("Full name2");
             _user.remove(function() {
               done();
             });
@@ -133,7 +133,7 @@ describe('<Unit Test>', function() {
 
       });
 
-      it('should fail to save an existing user with the same values', function(done) {
+      it("should fail to save an existing user with the same values", function(done) {
 
         var _user1 = new User(user1);
         _user1.save();
@@ -157,10 +157,10 @@ describe('<Unit Test>', function() {
         });
       });
 
-      it('should show an error when try to save without name', function(done) {
+      it("should show an error when try to save without name", function(done) {
 
         var _user = new User(user1);
-        _user.name = '';
+        _user.name = "";
 
         return _user.save(function(err) {
           should.exist(err);
@@ -168,10 +168,10 @@ describe('<Unit Test>', function() {
         });
       });
 
-      it('should show an error when try to save without username', function(done) {
+      it("should show an error when try to save without username", function(done) {
 
         var _user = new User(user1);
-        _user.username = '';
+        _user.username = "";
 
         return _user.save(function(err) {
           should.exist(err);
@@ -179,11 +179,11 @@ describe('<Unit Test>', function() {
         });
       });
 
-      it('should show an error when try to save without password and provider set to local', function(done) {
+      it("should show an error when try to save without password and provider set to local", function(done) {
 
         var _user = new User(user1);
-        _user.password = '';
-        _user.provider = 'local';
+        _user.password = "";
+        _user.provider = "local";
 
         return _user.save(function(err) {
           should.exist(err);
@@ -191,17 +191,17 @@ describe('<Unit Test>', function() {
         });
       });
 
-      it('should be able to to save without password and provider set to twitter', function(done) {
+      it("should be able to to save without password and provider set to twitter", function(done) {
 
         var _user = new User(user1);
 
-        _user.password = '';
-        _user.provider = 'twitter';
+        _user.password = "";
+        _user.provider = "twitter";
 
         return _user.save(function(err) {
           _user.remove(function() {
             should.not.exist(err);
-            _user.provider.should.equal('twitter');
+            _user.provider.should.equal("twitter");
             _user.hashed_password.should.have.length(0);
             done();
           });

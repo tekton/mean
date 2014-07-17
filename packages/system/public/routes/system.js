@@ -1,20 +1,20 @@
-'use strict';
+"use strict";
 
 //Setting up route
-angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
+angular.module("mean.system").config(["$stateProvider", "$urlRouterProvider",
   function($stateProvider, $urlRouterProvider) {
     // For unmatched routes:
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise("/");
 
     // states for my app
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'system/views/index.html'
+      .state("home", {
+        url: "/",
+        templateUrl: "system/views/index.html"
       });
   }
-]).config(['$locationProvider',
+]).config(["$locationProvider",
   function($locationProvider) {
-    $locationProvider.hashPrefix('!');
+    $locationProvider.hashPrefix("!");
   }
 ]);

@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-angular.module('mean.system').factory('Menus', ['$resource',
+angular.module("mean.system").factory("Menus", ["$resource",
   function($resource) {
-    return $resource('admin/menu/:name', {
-      name: '@name',
-      defaultMenu: '@defaultMenu'
+    return $resource("admin/menu/:name", {
+      name: "@name",
+      defaultMenu: "@defaultMenu"
     });
   }
 ]);

@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Global', 'Menus',
+angular.module("mean.system").controller("HeaderController", ["$scope", "$rootScope", "Global", "Menus",
   function($scope, $rootScope, Global, Menus) {
     $scope.global = Global;
     $scope.menus = {};
@@ -20,13 +20,13 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
     }
 
     // Query server for menus and check permissions
-    queryMenu('main', defaultMainMenu);
+    queryMenu("main", defaultMainMenu);
 
     $scope.isCollapsed = false;
 
-    $rootScope.$on('loggedin', function() {
+    $rootScope.$on("loggedin", function() {
 
-      queryMenu('main', defaultMainMenu);
+      queryMenu("main", defaultMainMenu);
 
       $scope.global = {
         authenticated: !! $rootScope.user,

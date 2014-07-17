@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-var mean = require('meanio');
+var mean = require("meanio");
 
 exports.render = function(req, res) {
 
@@ -9,17 +9,17 @@ exports.render = function(req, res) {
   for (var name in mean.modules) {
     modules.push({
       name: name,
-      module: 'mean.' + name,
+      module: "mean." + name,
       angularDependencies: mean.modules[name].angularDependencies
     });
   }
 
   function isAdmin() {
-    return req.user && req.user.roles.indexOf('admin') !== -1;
+    return req.user && req.user.roles.indexOf("admin") !== -1;
   }
 
   // Send some basic starting info to the view
-  res.render('index', {
+  res.render("index", {
     user: req.user ? {
       name: req.user.name,
       _id: req.user._id,
@@ -28,6 +28,6 @@ exports.render = function(req, res) {
     } : {},
     modules: modules,
     isAdmin: isAdmin,
-    adminEnabled: isAdmin() && mean.moduleEnabled('mean-admin')
+    adminEnabled: isAdmin() && mean.moduleEnabled("mean-admin")
   });
 };
